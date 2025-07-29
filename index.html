@@ -1,19 +1,1095 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>My static Space</title>
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="card">
-			<h1>Welcome to your static Space!</h1>
-			<p>You can modify this app directly by editing <i>index.html</i> in the Files and versions tab.</p>
-			<p>
-				Also don't forget to check the
-				<a href="https://huggingface.co/docs/hub/spaces" target="_blank">Spaces documentation</a>.
-			</p>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zap Contabilidade - Soluções Financeiras Inteligentes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+        }
+        
+        .bg-primary {
+            background-color: #1A3A8F;
+        }
+        
+        .text-primary {
+            color: #1A3A8F;
+        }
+        
+        .bg-secondary {
+            background-color: #00C4CC;
+        }
+        
+        .text-secondary {
+            color: #00C4CC;
+        }
+        
+        .bg-accent {
+            background-color: #FF6B6B;
+        }
+        
+        .text-accent {
+            color: #FF6B6B;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1A3A8F 0%, #00C4CC 100%);
+        }
+        
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-left: 4px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border-left-color: #00C4CC;
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(to bottom, #FFFFFF 80%, #F8F9FA 100%);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #00C4CC;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(26, 58, 143, 0.2) 0%, rgba(0, 196, 204, 0.2) 100%);
+            z-index: 1;
+        }
+        
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+        
+        .blog-image {
+            transition: transform 0.5s ease;
+        }
+        
+        .input-field:focus {
+            box-shadow: 0 0 0 3px rgba(0, 196, 204, 0.3);
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Floating background shapes -->
+    <div class="floating-shape w-64 h-64 bg-secondary -left-32 -top-32"></div>
+    <div class="floating-shape w-96 h-96 bg-primary -right-48 top-1/4"></div>
+    <div class="floating-shape w-80 h-80 bg-accent bottom-0 left-1/4"></div>
+
+    <!-- Header/Navigation -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold flex items-center">
+                        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mr-3">
+                            <i class="fas fa-calculator text-white text-lg"></i>
+                        </div>
+                        <span class="text-primary">Zap<span class="text-secondary">Contabilidade</span></span>
+                    </a>
+                </div>
+                
+                <div class="hidden lg:flex space-x-8 items-center">
+                    <a href="#home" class="nav-link font-medium text-gray-700 hover:text-primary">Início</a>
+                    <a href="#about" class="nav-link font-medium text-gray-700 hover:text-primary">Sobre Nós</a>
+                    <a href="#services" class="nav-link font-medium text-gray-700 hover:text-primary">Serviços</a>
+                    <a href="#blog" class="nav-link font-medium text-gray-700 hover:text-primary">Blog</a>
+                    <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-primary">Contato</a>
+                    <a href="#contact" class="ml-4 bg-secondary hover:bg-teal-500 text-white px-5 py-2 rounded-lg font-medium transition duration-300 shadow-md hover:shadow-lg">
+                        Fale Conosco
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="mobile-menu" class="mobile-menu lg:hidden">
+                <div class="flex flex-col space-y-4 mt-4 pb-4">
+                    <a href="#home" class="nav-link font-medium text-gray-700 hover:text-primary">Início</a>
+                    <a href="#about" class="nav-link font-medium text-gray-700 hover:text-primary">Sobre Nós</a>
+                    <a href="#services" class="nav-link font-medium text-gray-700 hover:text-primary">Serviços</a>
+                    <a href="#blog" class="nav-link font-medium text-gray-700 hover:text-primary">Blog</a>
+                    <a href="#contact" class="nav-link font-medium text-gray-700 hover:text-primary">Contato</a>
+                    <a href="#contact" class="bg-secondary hover:bg-teal-500 text-white px-4 py-2 rounded-lg font-medium text-center transition duration-300 mt-2">
+                        Fale Conosco
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative overflow-hidden gradient-bg text-white py-20 md:py-32">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Soluções Contábeis para o <span class="text-secondary">Futuro</span> do Seu Negócio</h1>
+                    <p class="text-xl mb-8 opacity-90">Tecnologia e expertise contábil combinadas para simplificar sua gestão financeira e impulsionar seus resultados.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-white hover:bg-gray-100 text-primary px-6 py-3 rounded-lg font-medium text-center transition duration-300 shadow-md hover:shadow-lg">
+                            Solicite uma Consultoria
+                        </a>
+                        <a href="#services" class="bg-transparent hover:bg-white hover:bg-opacity-10 border-2 border-white text-white px-6 py-3 rounded-lg font-medium text-center transition duration-300">
+                            <i class="fas fa-search mr-2"></i> Nossos Serviços
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 flex flex-wrap gap-4">
+                        <div class="stat-card px-6 py-4 rounded-lg shadow-sm flex items-center">
+                            <div class="bg-secondary bg-opacity-20 p-2 rounded-full mr-3">
+                                <i class="fas fa-check-circle text-secondary"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Clientes satisfeitos</p>
+                                <p class="font-bold text-primary">+500</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card px-6 py-4 rounded-lg shadow-sm flex items-center">
+                            <div class="bg-secondary bg-opacity-20 p-2 rounded-full mr-3">
+                                <i class="fas fa-medal text-secondary"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Anos de experiência</p>
+                                <p class="font-bold text-primary">15+</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center relative">
+                    <div class="hero-image-container w-full max-w-lg">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Equipe de contabilidade" class="w-full h-auto relative z-0">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="bg-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-secondary font-semibold mb-2">TRABALHAMOS COM AS MELHORES PLATAFORMAS</p>
+                <h2 class="text-3xl font-bold text-gray-800">Parceiros Tecnológicos</h2>
+            </div>
+            
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                <img src="https://via.placeholder.com/150x60?text=Partner+1" alt="Parceiro 1" class="h-12 opacity-60 hover:opacity-100 transition duration-300">
+                <img src="https://via.placeholder.com/150x60?text=Partner+2" alt="Parceiro 2" class="h-12 opacity-60 hover:opacity-100 transition duration-300">
+                <img src="https://via.placeholder.com/150x60?text=Partner+3" alt="Parceiro 3" class="h-12 opacity-60 hover:opacity-100 transition duration-300">
+                <img src="https://via.placeholder.com/150x60?text=Partner+4" alt="Parceiro 4" class="h-12 opacity-60 hover:opacity-100 transition duration-300">
+                <img src="https://via.placeholder.com/150x60?text=Partner+5" alt="Parceiro 5" class="h-12 opacity-60 hover:opacity-100 transition duration-300">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <p class="text-secondary font-semibold mb-2">SOBRE NÓS</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Reinventando a Contabilidade para o Século 21</h2>
+                    <p class="text-lg text-gray-600 mb-6">Na Zap Contabilidade, combinamos tradição contábil com inovação tecnológica para oferecer soluções que realmente fazem diferença no seu negócio.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-rocket text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Missão</h4>
+                                <p class="text-gray-600">Simplificar a contabilidade através da tecnologia, permitindo que empreendedores foquem no que realmente importa.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-eye text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Visão</h4>
+                                <p class="text-gray-600">Ser reconhecida como a contabilidade mais inovadora e eficiente do Brasil até 2025.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-gem text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Valores</h4>
+                                <p class="text-gray-600">Transparência, Excelência, Inovação e Relacionamento.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="#contact" class="inline-flex items-center text-secondary font-semibold hover:text-teal-600">
+                            Fale com nossos especialistas <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 relative">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nossa equipe" class="rounded-xl shadow-xl w-full">
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg w-2/3">
+                            <div class="flex items-center">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-trophy text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800">Prêmio Excelência Contábil</h4>
+                                    <p class="text-sm text-gray-600">Reconhecimento por inovação e qualidade</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-secondary font-semibold mb-2">NOSSOS SERVIÇOS</p>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Soluções Completas para Seu Negócio</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Oferecemos um portfólio completo de serviços contábeis e financeiros para empresas de todos os portes e segmentos.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <i class="fas fa-user-tie text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Contabilidade para MEI</h3>
+                    <p class="text-gray-600 mb-6">Solução completa para Microempreendedores Individuais, desde abertura até gestão mensal simplificada.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Regularização completa</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Emissão de guias e documentos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Suporte especializado</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <i class="fas fa-building text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Contabilidade para PMEs</h3>
+                    <p class="text-gray-600 mb-6">Gestão contábil completa para pequenas e médias empresas com relatórios personalizados.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Escrituração fiscal e contábil</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Departamento pessoal completo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Relatórios gerenciais</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Consultoria Tributária</h3>
+                    <p class="text-gray-600 mb-6">Planejamento tributário estratégico para reduzir custos e otimizar sua carga fiscal.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Análise de regimes tributários</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Planejamento fiscal</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Recuperação de créditos</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <i class="fas fa-file-invoice-dollar text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Departamento Pessoal</h3>
+                    <p class="text-gray-600 mb-6">Gestão completa da folha de pagamento e processos trabalhistas com segurança.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Cálculo de folha de pagamento</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Processos admissionais</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Obrigações acessórias</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <i class="fas fa-hand-holding-usd text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Abertura de Empresa</h3>
+                    <p class="text-gray-600 mb-6">Processo completo de abertura com consultoria para escolha do melhor enquadramento.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Consulta de viabilidade</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Registro completo</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Obtenção de alvarás</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-white p-8 rounded-xl shadow-sm">
+                    <div class="bg-primary bg-opacity-10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+                        <i class="fas fa-cloud text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Contabilidade Digital</h3>
+                    <p class="text-gray-600 mb-6">Plataforma 100% online para gestão financeira e contábil com acesso em tempo real.</p>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Acesso 24/7</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Integração com bancos</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-secondary mt-1 mr-3"></i>
+                            <span class="text-gray-600">Relatórios em tempo real</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nossa equipe trabalhando" class="rounded-xl shadow-xl w-full">
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-primary mb-1">15+</div>
+                                <div class="text-gray-600">Anos de experiência</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <p class="text-secondary font-semibold mb-2">POR QUE NOS ESCOLHER?</p>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Excelência em Serviços Contábeis</h2>
+                    <p class="text-lg text-gray-600 mb-8">Na Zap Contabilidade, combinamos expertise técnica com tecnologia de ponta para oferecer a melhor experiência contábil do mercado.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-bolt text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Processos Ágeis</h4>
+                                <p class="text-gray-600">Automatizamos rotinas para entregar resultados mais rápidos sem perder a qualidade.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-lock text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Segurança de Dados</h4>
+                                <p class="text-gray-600">Utilizamos os mais altos padrões de cibersegurança para proteger suas informações.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                <i class="fas fa-headset text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1">Suporte Personalizado</h4>
+                                <p class="text-gray-600">Contador dedicado para acompanhar seu negócio e tirar todas as dúvidas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="#contact" class="bg-secondary hover:bg-teal-500 text-white px-6 py-3 rounded-lg font-medium inline-block transition duration-300 shadow-md hover:shadow-lg">
+                            Conheça Nossa Equipe
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-secondary font-semibold mb-2">DEPOIMENTOS</p>
+                <h2 class="text-3xl font-bold mb-4">O Que Nossos Clientes Dizem</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg opacity-90 max-w-3xl mx-auto">A satisfação dos nossos clientes é nossa maior recompensa. Veja o que eles têm a dizer sobre nossos serviços.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Joana Silva" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Joana Silva</h4>
+                            <p class="text-sm text-gray-600">Restaurante Bella Napoli</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700">"A Zap Contabilidade transformou completamente a gestão do meu restaurante. Antes eu vivia perdido com as obrigações fiscais, agora tenho tudo organizado e acesso fácil a todas as informações."</p>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Mendes" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Carlos Mendes</h4>
+                            <p class="text-sm text-gray-600">Agência Digital Inovatec</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700">"A consultoria tributária da Zap nos ajudou a economizar mais de 20% nos impostos no primeiro ano. A plataforma digital é intuitiva e nos dá total controle sobre nossas finanças."</p>
+                </div>
+                
+                <div class="testimonial-card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ana Oliveira" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Ana Oliveira</h4>
+                            <p class="text-sm text-gray-600">Loja de Cosméticos Natural Beauty</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700">"Como MEI, não sabia por onde começar com a contabilidade. A Zap me orientou em tudo e agora me sinto segura sabendo que minhas obrigações estão em dia. O atendimento é excelente!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-secondary font-semibold mb-2">BLOG</p>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Artigos e Notícias</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Fique por dentro das novidades do mundo contábil e aprenda a gerir melhor suas finanças empresariais.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Post 1 -->
+                <div class="blog-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Imagem do blog" class="blog-image w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span>15 Jun 2023</span>
+                            <span class="mx-2">•</span>
+                            <span class="text-primary font-medium">Contabilidade</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Como Escolher o Melhor Regime Tributário em 2023</h3>
+                        <p class="text-gray-600 mb-4">Guia completo para entender as diferenças entre Simples Nacional, Lucro Presumido e Lucro Real e como tomar a melhor decisão.</p>
+                        <a href="#" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                            Ler artigo <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="blog-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Imagem do blog" class="blog-image w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span>02 Jul 2023</span>
+                            <span class="mx-2">•</span>
+                            <span class="text-primary font-medium">Gestão Financeira</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">5 Erros Financeiros que Empresas Pequenas Cometem</h3>
+                        <p class="text-gray-600 mb-4">Conheça os principais equívocos na gestão financeira que podem comprometer o crescimento do seu negócio.</p>
+                        <a href="#" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                            Ler artigo <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="blog-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Imagem do blog" class="blog-image w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                            <span>20 Jul 2023</span>
+                            <span class="mx-2">•</span>
+                            <span class="text-primary font-medium">MEI</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Guia Completo para o Microempreendedor Individual</h3>
+                        <p class="text-gray-600 mb-4">Tudo o que você precisa saber para se formalizar como MEI, desde a abertura até as obrigações mensais e anuais.</p>
+                        <a href="#" class="text-secondary font-semibold hover:text-teal-600 flex items-center">
+                            Ler artigo <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="bg-white hover:bg-gray-100 text-primary border border-gray-200 px-6 py-3 rounded-lg font-medium inline-flex items-center transition duration-300 shadow-sm hover:shadow-md">
+                    Ver Todos os Artigos <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gray-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-90"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Pronto para Transformar Sua Contabilidade?</h2>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">Entre em contato conosco e descubra como podemos ajudar seu negócio a crescer com segurança e tranquilidade.</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="bg-white hover:bg-gray-100 text-primary px-6 py-3 rounded-lg font-medium inline-block transition duration-300 shadow-md hover:shadow-lg">
+                        Solicitar Orçamento
+                    </a>
+                    <a href="tel:+5511999999999" class="bg-transparent hover:bg-white hover:bg-opacity-10 border-2 border-white text-white px-6 py-3 rounded-lg font-medium inline-flex items-center transition duration-300">
+                        <i class="fas fa-phone mr-2"></i> (11) 99999-9999
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-secondary font-semibold mb-2">FAQ</p>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Perguntas Frequentes</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Tire suas dúvidas sobre nossos serviços e processos contábeis.</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item 1 -->
+                <div class="mb-4">
+                    <button class="faq-question w-full text-left bg-white p-6 rounded-xl shadow-sm flex justify-between items-center font-semibold text-gray-800 hover:text-primary transition duration-300">
+                        <span>Quanto custa o serviço de contabilidade para MEI?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-xl shadow-sm mt-1">
+                        <p class="text-gray-600">Nossos planos para MEI começam a partir de R$ 99/mês, incluindo todas as obrigações mensais e anuais, além de suporte por e-mail e WhatsApp. Oferecemos desconto para pagamento anual e planos familiares quando há mais de um MEI na mesma família.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-4">
+                    <button class="faq-question w-full text-left bg-white p-6 rounded-xl shadow-sm flex justify-between items-center font-semibold text-gray-800 hover:text-primary transition duration-300">
+                        <span>Quanto tempo leva para abrir uma empresa?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-xl shadow-sm mt-1">
+                        <p class="text-gray-600">O tempo médio para abertura de empresa varia conforme o tipo societário e a região, mas normalmente leva entre 5 a 15 dias úteis para conclusão de todo o processo. Para MEI, conseguimos finalizar em até 48 horas em muitos casos. Nosso time acompanha cada etapa e mantém você informado sobre o andamento.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-4">
+                    <button class="faq-question w-full text-left bg-white p-6 rounded-xl shadow-sm flex justify-between items-center font-semibold text-gray-800 hover:text-primary transition duration-300">
+                        <span>Posso migrar de contador no meio do ano?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-xl shadow-sm mt-1">
+                        <p class="text-gray-600">Sim, é possível migrar a qualquer momento. Nossa equipe cuidará de todo o processo de transferência, garantindo que todas as obrigações estejam em dia e que a transição seja tranquila para seu negócio. Fazemos a análise da situação atual, regularizamos pendências se necessário e assumimos todas as responsabilidades contábeis a partir da data contratada.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="mb-4">
+                    <button class="faq-question w-full text-left bg-white p-6 rounded-xl shadow-sm flex justify-between items-center font-semibold text-gray-800 hover:text-primary transition duration-300">
+                        <span>Como funciona a contabilidade digital?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-xl shadow-sm mt-1">
+                        <p class="text-gray-600">Nossa contabilidade digital utiliza uma plataforma online onde você pode enviar documentos, acompanhar relatórios financeiros, emitir notas fiscais e se comunicar com nossa equipe, tudo de forma 100% digital e segura. Você tem acesso 24/7 a todos os dados do seu negócio, com alertas automáticos para obrigações e prazos. Tudo isso com o suporte de contadores especializados disponíveis por chat, e-mail ou vídeo chamada.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 5 -->
+                <div class="mb-4">
+                    <button class="faq-question w-full text-left bg-white p-6 rounded-xl shadow-sm flex justify-between items-center font-semibold text-gray-800 hover:text-primary transition duration-300">
+                        <span>Quais documentos preciso fornecer para começar?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer hidden bg-white p-6 rounded-b-xl shadow-sm mt-1">
+                        <p class="text-gray-600">Os documentos básicos são: RG e CPF dos sócios, comprovante de endereço da empresa e dos sócios, contrato social (para empresas) e documentos específicos conforme a atividade. Para clientes já em atividade, também solicitamos os últimos balanços e declarações. Nossa equipe orientará sobre tudo o que é necessário conforme seu caso específico, e você pode enviar tudo digitalmente através de nossa plataforma segura.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-secondary font-semibold mb-2">CONTATO</p>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Fale Conosco</h2>
+                <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Tire suas dúvidas, solicite um orçamento ou agende uma consultoria com nossos especialistas.</p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo*</label>
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent input-field">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail*</label>
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent input-field">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Telefone*</label>
+                                <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent input-field">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Assunto*</label>
+                                <select id="subject" name="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent input-field">
+                                    <option value="" disabled selected>Selecione um assunto</option>
+                                    <option value="orcamento">Solicitar Orçamento</option>
+                                    <option value="duvidas">Tirar Dúvidas</option>
+                                    <option value="servicos">Informações sobre Serviços</option>
+                                    <option value="outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mensagem*</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent input-field"></textarea>
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="bg-secondary hover:bg-teal-500 text-white px-6 py-3 rounded-lg font-medium w-full transition duration-300 shadow-md hover:shadow-lg">
+                                Enviar Mensagem
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-sm h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Informações de Contato</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-map-marker-alt text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Endereço</h4>
+                                    <p class="text-gray-600">Av. Paulista, 1000 - 10º andar<br>Bela Vista, São Paulo - SP<br>CEP: 01310-100</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-phone text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Telefone</h4>
+                                    <p class="text-gray-600">(11) 99999-9999<br>(11) 99999-9999 (WhatsApp)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-envelope text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">E-mail</h4>
+                                    <p class="text-gray-600">contato@zapcontabilidade.com.br<br>suporte@zapcontabilidade.com.br</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-clock text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Horário de Atendimento</h4>
+                                    <p class="text-gray-600">Segunda a Sexta: 9h às 18h<br>Sábado: 9h às 13h</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-gray-800 mb-4">Siga-nos nas Redes Sociais</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-primary hover:bg-blue-900 text-white w-10 h-10 rounded-lg flex items-center justify-center transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-primary hover:bg-blue-900 text-white w-10 h-10 rounded-lg flex items-center justify-center transition duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-primary hover:bg-blue-900 text-white w-10 h-10 rounded-lg flex items-center justify-center transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-primary hover:bg-blue-900 text-white w-10 h-10 rounded-lg flex items-center justify-center transition duration-300">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="h-96 w-full relative">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.287482899913!2d-46.66370392423903!3d-23.55815957880038!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59d2b063f661%3A0xc567c0d16d0bc582!2sAv.%20Paulista%2C%201000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-100!5e0!3m2!1sen!2sbr!4v1689874725834!5m2!1sen!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-10 pointer-events-none"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="text-2xl font-bold flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mr-3">
+                            <i class="fas fa-calculator text-white text-lg"></i>
+                        </div>
+                        <span>Zap<span class="text-secondary">Contabilidade</span></span>
+                    </a>
+                    <p class="mb-4 text-gray-400">Soluções contábeis modernas e eficientes para seu negócio crescer com segurança.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-secondary transition duration-300 text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="hover:text-secondary transition duration-300 text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="hover:text-secondary transition duration-300 text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="hover:text-secondary transition duration-300 text-gray-400 hover:text-white">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Serviços</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contabilidade para MEI</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contabilidade para PMEs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Consultoria Tributária</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Departamento Pessoal</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Abertura de Empresa</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contabilidade Digital</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Links Úteis</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Depoimentos</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Trabalhe Conosco</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Política de Privacidade</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Termos de Uso</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Newsletter</h3>
+                    <p class="mb-4 text-gray-400">Assine nossa newsletter e receba dicas e novidades sobre contabilidade.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Seu e-mail" class="px-4 py-2 rounded-l-lg text-gray-800 w-full focus:outline-none">
+                        <button type="submit" class="bg-secondary hover:bg-teal-500 px-4 py-2 rounded-r-lg transition duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 Zap Contabilidade. Todos os direitos reservados. CNPJ: 00.000.000/0000-00</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-secondary hover:bg-teal-500 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            mobileMenuButton.innerHTML = mobileMenu.classList.contains('open') ? 
+                '<i class="fas fa-times text-2xl"></i>' : 
+                '<i class="fas fa-bars text-2xl"></i>';
+        });
+        
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                // Toggle answer visibility
+                answer.classList.toggle('hidden');
+                
+                // Toggle icon rotation
+                icon.classList.toggle('transform');
+                icon.classList.toggle('rotate-180');
+                
+                // Close other open answers
+                faqQuestions.forEach(q => {
+                    if (q !== question) {
+                        q.nextElementSibling.classList.add('hidden');
+                        q.querySelector('i').classList.remove('transform', 'rotate-180');
+                    }
+                });
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Here you would typically send the form data to a server
+            // For this example, we'll just show an alert
+            alert('Obrigado por entrar em contato! Sua mensagem foi enviada com sucesso. Nossa equipe entrará em contato em breve.');
+            
+            // Reset the form
+            contactForm.reset();
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        mobileMenuButton.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+                    }
+                }
+            });
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=andimendes/sites-grupo-delfos" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
 </html>

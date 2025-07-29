@@ -1,10 +1,12 @@
 ---
-title: Sites Grupo Delfos
-emoji: 🌖
-colorFrom: green
-colorTo: indigo
+title: sites-grupo-delfos
+emoji: 🐳
+colorFrom: gray
+colorTo: purple
 sdk: static
 pinned: false
+tags:
+  - deepsite
 ---
 
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
